@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>tw.fengqing.spring.springbucks</groupId>
+	<artifactId>waiter-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>waiter-service</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>21</java.version>
+		<!-- Spring Cloud 版本管理 -->
+		<spring-cloud.version>2024.0.2</spring-cloud.version>
+		<!-- 第三方依賴版本管理 -->
+		<joda-money.version>2.0.2</joda-money.version>
+		<jackson-datatype-hibernate6.version>2.19.1</jackson-datatype-hibernate6.version>
+		<commons-lang3.version>3.17.0</commons-lang3.version>
+	</properties>
+
+	<dependencies>
+		<!-- Spring Boot 預設依賴 - 不指定版本，使用 Spring Boot 管理 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+		<!-- Spring Boot Validation 依賴 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		
+		<!-- Spring Cloud 依賴 - 版本由 dependencyManagement 管理 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+		</dependency>
+
+		<!-- Micrometer 監控依賴 - 版本由 Spring Boot 管理 -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+
+		<!-- 第三方依賴 - 版本由 dependencyManagement 管理 -->
+		<dependency>
+			<groupId>org.joda</groupId>
+			<artifactId>joda-money</artifactId>
+		</dependency>
+	
+		<!-- Jackson Hibernate 類型支持 - 版本由 dependencyManagement 管理 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate6</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- 資料庫依賴 - 版本由 Spring Boot 管理 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- 開發工具依賴 - 版本由 Spring Boot 管理 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- 測試依賴 - 版本由 Spring Boot 管理 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Spring Cloud 依賴管理 -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<!-- 第三方依賴版本覆蓋 - 確保版本一致性 -->
+			<dependency>
+				<groupId>org.joda</groupId>
+				<artifactId>joda-money</artifactId>
+				<version>${joda-money.version}</version>
+			</dependency>
+			
+			<!-- Jackson Hibernate 類型支持版本覆蓋 - 支援 Hibernate 6 -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-hibernate6</artifactId>
+				<version>${jackson-datatype-hibernate6.version}</version>
+			</dependency>
+			
+			<!-- Apache Commons Lang3 版本覆蓋 - 使用最新穩定版本 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
