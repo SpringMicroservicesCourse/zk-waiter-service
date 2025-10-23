@@ -42,7 +42,7 @@ public class CoffeeController {
         return coffeeService.saveCoffee(newCoffee.getName(), newCoffee.getPrice());
     }
 
-    @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Coffee addJsonCoffeeWithoutBindingResult(@Valid @RequestBody NewCoffeeRequest newCoffee) {
         return coffeeService.saveCoffee(newCoffee.getName(), newCoffee.getPrice());
@@ -62,7 +62,7 @@ public class CoffeeController {
                     String[] arr = StringUtils.split(str, " ");
                     if (arr != null && arr.length == 2) {
                         coffees.add(coffeeService.saveCoffee(arr[0],
-                                Money.of(CurrencyUnit.of("CNY"),
+                                Money.of(CurrencyUnit.of("TWD"),
                                         NumberUtils.createBigDecimal(arr[1]))));
                     }
                 }

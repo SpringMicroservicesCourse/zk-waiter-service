@@ -104,7 +104,7 @@ cd "Chapter 12 服務註冊與發現/zk-waiter-service"
 2. **啟動 Zookeeper 服務：**
 ```bash
 # 使用 Docker 啟動 Zookeeper
-docker run -d --name zookeeper -p 2181:2181 zookeeper:3.9.2
+docker run -d --name spring-zookeeper -p 2181:2181 zookeeper:3.9.2
 ```
 
 3. **編譯專案：**
@@ -144,6 +144,8 @@ spring.jpa.show-sql=true
 # 監控設定
 management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
+# 確保 Info 端點顯示所有 info.* 屬性，這是 Spring Boot 3.x 的行為，在 Spring Boot 2.x 中不需要這個設定
+management.info.env.enabled=true
 ```
 
 ### 設定檔說明
